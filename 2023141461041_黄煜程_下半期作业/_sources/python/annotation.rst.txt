@@ -1,0 +1,41 @@
+.. _annotation:
+
+类型注解
+========
+
+强制
+----
+- 仅在必须导入 ``typing`` 模块中某一类型时才导入该模块, 优先使用内置类型注解.
+- 能用管道符 ``|`` 时避免使用 ``Union``, 用 ``Optional[type]`` 替代 ``type | None``.
+- 所有函数(包括lambda函数)的参数和返回值必须进行类型注解, 含位置参数与关键字参数.
+- 类型注解应与参数默认值保持一致.
+- 支持多类型时必须用 ``Generic`` 和 ``TypeVar``, 常量和变量使用前必须先注解.
+- Python 3.7-3.9 需用 ``from __future__ import annotations`` 启用惰性求值, 变量用字符串形式注解.
+
+推荐
+----
+- 避免使用 ``Any``, 除非类型无法确定.
+- 类型别名可提升复杂类型注解的可读性.
+- 对于复杂类型建议用 ``TypeAlias``.
+
+允许
+----
+- 特殊情况下可用 ``Any`` 以兼容第三方库或动态类型.
+- 对于临时变量或极短作用域变量可省略类型注解.
+
+.. note::
+
+    尽量减少 ``Any`` 类型的使用, 应当尽量确定类型.
+
+示例
+----
+.. code-block:: python
+
+    # 错误
+    def foo(x: str = None):
+        pass
+
+    # 正确
+    from typing import Optional
+    def foo(x: Optional[str] = None):
+        pass

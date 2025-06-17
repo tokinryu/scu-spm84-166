@@ -1,0 +1,44 @@
+.. _import:
+
+导入
+====
+
+强制
+----
+- 使用 ``import`` 关键字进行模块导入.
+- 尽量避免使用 ``from ... import *``, 除非为导入旧有API.
+- 每个模块应在导入其他模块下方空一行位置处定义自身可导出的接口, 即 ``__all__`` 属性.
+- ``__all__`` 属性必须使用列表的展开形式, 无论该列表内有多少元素.
+- 模块导入分为三组：标准库、第三方库、本项目内部模块, 组与组之间空一行.
+- 每组内先 ``import`` 再 ``from...import``, 并按字典序排列.
+- ``__future__`` 模块导入应置于首部, 并与其余分组空一行.
+- 内部使用模块导入时应当加下划线前缀标识.
+
+推荐
+----
+- 约定俗成的简写或团队内部约定的简写应重命名.
+- 大量内容导入时可用元组展开形式.
+
+允许
+----
+- 特殊情况下可根据实际需求调整导入顺序, 但需在注释中说明理由.
+
+示例
+----
+.. code-block:: python
+
+    from __future__ import annotations
+
+    import os
+    from pathlib import Path
+
+    import torch
+    import numpy as np
+
+    import config
+    import set_logger as _set_logger
+
+    __all__ = [
+        'Module',
+        'Function'
+    ]
