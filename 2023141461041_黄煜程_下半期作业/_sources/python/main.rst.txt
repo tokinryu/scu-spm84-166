@@ -1,0 +1,38 @@
+.. _main:
+
+Python 代码规范
+===============
+
+本节介绍 Python 代码规范, 以增强代码风格统一性与可读性. 
+本文档撰写具体参考 `PEP <https://peps.python.org/>`_ 及 
+`Google代码规范 <https://github.com/google/styleguide>`_.
+
+本代码规范分为三个级别, 分别为
+
+#. 强制: 要求任何项目必须实现的规范.
+#. 推荐: 鼓励项目使用的规范, 但项目应根据实际情况裁剪.
+#. 允许: 不鼓励也不拒绝的规范.
+
+对于推荐和允许级别, 每个项目应该自行根据实际情况裁剪, 制定一个统一的规范.
+
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+
+    naming
+    blank
+    blank_line
+    line_break
+    indent
+    import
+    annotation
+    function
+    class
+    file
+    encoding
+    punctuation
+    string
+    comment
+    exception
+    logging
+    feature

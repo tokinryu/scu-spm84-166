@@ -1,0 +1,30 @@
+.. 代码规范 documentation master file, created by
+   sphinx-quickstart on Sun Jun  8 08:33:49 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. 关闭右侧侧边栏
+.. raw:: html
+ 
+    <style>
+    .bd-sidebar-secondary {
+        display: none !important;
+    }
+    </style>
+
+代码规范文档
+============
+
+本文档维护高质量的代码规范,
+旨在帮助开发者提升代码的可读性,
+可维护性和团队协作效率.
+
+代码规范内容涵盖命名, 空格, 缩进, 注释, 异常处理, 类型注解, 文件结构等多个方面,
+参考了多个知名代码规范, 如 `Google Style Guides <https://google.github.io/styleguide/>`_ 及实际项目经验, 适用于个人和团队开发.
+
+你可以通过上方导航栏或下方目录快速浏览各章节内容.
+
+.. toctree::
+   :maxdepth: 2
+   
+   python/main

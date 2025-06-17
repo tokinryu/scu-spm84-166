@@ -1,0 +1,46 @@
+.. _class_definition:
+
+类定义
+======
+
+强制
+----
+- 类的设计必须遵循 SOLID 原则, 并根据实际项目需求灵活裁剪.
+- 除非采用混入类设计模式, 否则禁止多重继承.
+- 类成员定义顺序应为: docstring, 类常量, 类属性, ``__init__`` 方法, ``@property`` 属性, 普通方法, 私有方法, 静态方法, 类方法, 其他魔法方法.
+- 每个类必须包含 docstring, 说明继承与组合关系(如果有), 主要功能, 实现原理(可选).
+- __init__ 方法只定义必要的成员属性, 属性管理应优先使用 @property.
+
+推荐
+----
+- 类 docstring 推荐采用简明扼要的描述, 便于理解和维护.
+- 静态方法, 类方法应根据实际用途合理划分.
+- 属性和方法命名应清晰表达其用途, 避免歧义.
+- 适当使用类型注解提升代码可读性.
+
+允许
+----
+- 特殊业务场景下可适当调整成员顺序, 但需在注释中说明理由.
+- 可根据团队约定补充额外的类成员或文档内容.
+
+示例
+----
+.. code-block:: python
+
+    class Foo:
+        """A simple class printing greeting words when is initialized.
+
+        继承关系：无
+        主要功能：初始化时打印问候语
+        """
+        MONTH: int = 12
+        DAY: int = 31
+        greeting: str = "Hello World!"
+
+        def __init__(self, name: str) -> None:
+            self.name = name
+            print(f"Hello, {self.name}")
+
+        @staticmethod
+        def greet():
+            print(Foo.greeting)
