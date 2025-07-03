@@ -1,0 +1,80 @@
+.. _feature:
+
+Python特性
+==========
+
+强制
+----
+- lambda表达式仅用于简单、临时的函数对象, 不能超过一行, 且应保证语义清晰.
+- 列表生成式(list comprehension)和生成器表达式(generator expression)不能超过一行, 且嵌套语义不能超过两种.
+
+推荐
+----
+- 推荐优先使用列表生成式和生成器表达式替代简单的for循环或 ``filter/map/reduce``.
+- 生成器函数应有清晰的docstring, 说明用途、参数和返回值.
+- ``filter/map/reduce`` 等函数如需使用, 建议配合lambda或已定义函数, 保证可读性.
+
+允许
+----
+- 对于简单的临时函数(如 lambda函数), 可适当省略类型注解, 但应保证语义清晰.
+- 特殊情况下可适当放宽参数数量限制, 但需在注释中说明理由.
+- 复杂表达式可适当拆分为多行以提升可读性.
+
+列表生成式
+----------
+- 推荐优先使用列表生成式替代简单的for循环构造列表.
+- 列表生成式应保持单行, 避免嵌套过深或逻辑复杂.
+- 如表达式过长或包含多重条件, 建议拆分为多行或使用普通循环.
+
+.. code-block:: python
+
+    # 推荐
+    squares = [x * x for x in range(10)]
+    # 不推荐
+    squares = []
+    for x in range(10):
+        squares.append(x * x)
+
+lambda函数
+----------
+- 仅用于简单、临时的函数对象, 且应保证语义清晰.
+- lambda表达式应保持单行, 避免复杂逻辑.
+- lambda参数与冒号之间不加空格, 冒号后加一个空格.
+- 推荐为lambda函数添加类型注解(如适用).
+
+.. code-block:: python
+
+    # 推荐
+    add = lambda x, y: x + y
+    # 不推荐
+    complicated = lambda x: (x + 1 if x > 0 else x - 1)
+
+filter/map/reduce
+-----------------
+- 推荐优先使用列表生成式或生成器表达式替代简单的 ``filter/map/reduce``.
+- 如需使用 ``filter/map/reduce``, 建议配合lambda或已定义函数, 保证可读性.
+
+.. code-block:: python
+
+    # 推荐
+    evens = [x for x in range(10) if x % 2 == 0]
+    # 可接受
+    evens = list(filter(lambda x: x % 2 == 0, range(10)))
+
+生成器
+------
+- 推荐使用生成器表达式或 ``yield`` 语句处理大数据集, 提升内存效率.
+- 生成器函数应有清晰的docstring, 说明用途、参数和返回值.
+- 生成器表达式应保持简洁, 避免嵌套过深.
+
+.. code-block:: python
+
+    # 生成器表达式
+    squares = (x * x for x in range(10))
+    # 生成器函数
+    def count_up_to(n: int) -> 'Iterator[int]':
+        """Yield numbers from 1 to n."""
+        i = 1
+        while i <= n:
+            yield i
+            i += 1

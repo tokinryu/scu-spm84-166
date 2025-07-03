@@ -1,0 +1,34 @@
+.. _logging:
+
+日志
+====
+
+强制
+----
+- 必须使用标准 ``logging`` 模块进行日志记录, 禁止使用 ``print`` 进行生产环境日志输出.
+- 日志信息至少必须包含时间, 级别, 模块, 行号, 内容等关键信息, 如果元数据信息较长, 则应当将内容换行输出.
+- 如果同时存在控制台日志信息和文件日志信息, 则文件日志信息应当包含比控制台日志信息更多的内容.
+
+推荐
+----
+- 日志级别应根据实际需求合理设置(如 ``DEBUG``, ``INFO``, ``WARNING``, ``ERROR``, ``CRITICAL``).
+- 日志格式可自定义, 但应保持项目级别一致性.
+- 推荐以模块级别设置独立 logger.
+
+允许
+----
+- 开发调试阶段可临时使用 ``print``, 但需在提交前移除.
+- 特殊场景下可根据业务需求扩展日志处理方式.
+
+示例
+----
+.. code-block:: python
+
+    import logging
+
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s %(levelname)s %(module)s %(lineno)s\n%(message)s')
+    logger = logging.getLogger(__name__)
+
+    logger.info('程序启动')
+    logger.error('发生错误')
